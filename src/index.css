@@ -1,13 +1,63 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.ti-widget-registerview-0 #searchGrid.ti-widget-registerview {
+  height: 100%;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.ti-widget-registerview-0 .flexchild.ti-widget-registerview {
+  -ms-flex: 1 1 0.000000001px;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-basis: 1e-9px;
+  flex-basis: 1e-9px;
+}
+.ti-widget-registerview-0 #searchDiv.ti-widget-registerview {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  padding-bottom: 8px;
+  height: 24px;
+  width: calc(100% - 20px);
+}
+.ti-widget-registerview-0 #registerGrid.ti-widget-registerview {
+  height: calc(100% - 24px);
+  width: 100%;
+  overflow-y: hidden;
+}
+.ti-widget-registergrid-0 #container.ti-widget-registergrid {
+  margin: 1px;
+}
+.ti-widget-registergrid-0 #registergrid_div.ti-widget-registergrid {
+  width: 100%;
+  font-size: small;
+  background-color: white;
+  outline: none;
+}
+.ti-widget-registergrid-0 #section.ti-widget-registergrid {
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+.ti-widget-registergrid-0 #table_registergrid_div.ti-widget-registergrid {
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+}
+.ti-widget-registergrid-0 table.ti-widget-registergrid {
+  border-collapse: collapse;
+}
+.ti-widget-registergrid-0 #table_registergrid.ti-widget-registergrid {
+  background-color: white;
+  border-top-width: 0;
+  width: 100%;
+}
+.ti-widget-registergrid-0 th.ti-widget-registergrid {
+  z-index: 5;
+  top: 0;
+  background-color: #f1f1f1;
+  border: solid 1px white;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: normal;
+  color: black;
+  font-size: small;
 }

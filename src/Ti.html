@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .ti-widget-registerview-0 #searchGrid.ti-widget-registerview {
+        height: 100%;
+      }
+      .ti-widget-registerview-0 .flexchild.ti-widget-registerview {
+        -ms-flex: 1 1 0.000000001px;
+        -webkit-flex: 1;
+        flex: 1;
+        -webkit-flex-basis: 1e-9px;
+        flex-basis: 1e-9px;
+      }
+      .ti-widget-registerview-0 #searchDiv.ti-widget-registerview {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        padding-bottom: 8px;
+        height: 24px;
+        width: calc(100% - 20px);
+      }
+      .ti-widget-registerview-0 #registerGrid.ti-widget-registerview {
+        height: calc(100% - 24px);
+        width: 100%;
+        overflow-y: hidden;
+      }
+      .ti-widget-registergrid-0 #container.ti-widget-registergrid {
+        margin: 1px;
+      }
+      .ti-widget-registergrid-0 #registergrid_div.ti-widget-registergrid {
+        width: 100%;
+        font-size: small;
+        background-color: white;
+        outline: none;
+      }
+      .ti-widget-registergrid-0 #section.ti-widget-registergrid {
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+      }
+      .ti-widget-registergrid-0 #table_registergrid_div.ti-widget-registergrid {
+        background-color: transparent;
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+      }
+      .ti-widget-registergrid-0 table.ti-widget-registergrid {
+        border-collapse: collapse;
+      }
+      .ti-widget-registergrid-0 #table_registergrid.ti-widget-registergrid {
+        background-color: white;
+        border-top-width: 0;
+        width: 100%;
+      }
+      .ti-widget-registergrid-0 th.ti-widget-registergrid {
+        z-index: 5;
+        top: 0;
+        background-color: #f1f1f1;
+        border: solid 1px white;
+        vertical-align: middle;
+        text-align: center;
+        font-weight: normal;
+        color: black;
+        font-size: small;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="virtualGrid"
+      class="container flex-horizontal style-scope ti-widget-registerview"
+      style="height: 100%; width: 100%; overflow-y: hidden"
+    >
+      <ti-widget-registergrid
+        id="registerGrid"
+        class="flexchild style-scope ti-widget-registerview x-scope ti-widget-registergrid-0"
+        max-bit-width="16"
+      >
+        <div
+          id="container"
+          tabindex="0"
+          class="style-scope ti-widget-registergrid"
+        >
+          <div
+            id="registergrid_div"
+            tabindex="-1"
+            class="style-scope ti-widget-registergrid"
+          >
+            <section id="section" class="style-scope ti-widget-registergrid">
+              <div
+                id="table_registergrid_div"
+                class="style-scope ti-widget-registergrid"
+              >
+                <table
+                  id="table_registergrid"
+                  align="left"
+                  class="style-scope ti-widget-registergrid"
+                >
+                  <thead
+                    style="position: sticky"
+                    class="style-scope ti-widget-registergrid"
+                  >
+                    <tr
+                      style="
+                        height: 28px;
+                        font-weight: bold;
+                        background-color: white;
+                      "
+                      class="style-scope ti-widget-registergrid"
+                    >
+                      <th
+                        align="center"
+                        rowspan="2"
+                        style="min-width: 201px; border-right: none"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        Register Name
+                      </th>
+                      <th
+                        align="center"
+                        rowspan="2"
+                        style="min-width: 18px; border-left: none"
+                        class="style-scope ti-widget-registergrid"
+                      ></th>
+                      <th
+                        align="center"
+                        rowspan="2"
+                        style="min-width: 71px"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        Address
+                      </th>
+                      <th
+                        align="center"
+                        rowspan="2"
+                        style="width: 101px"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        Value
+                      </th>
+
+                      <th
+                        align="center"
+                        style="min-width: "
+                        class="style-scope ti-widget-registergrid"
+                        colspan="16"
+                      >
+                        Bits
+                      </th>
+                      <template
+                        id$="ifBitDisplayVisible.Hdr"
+                        restamp=""
+                        is="dom-if"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                    </tr>
+
+                    <tr
+                      style="background-color: white"
+                      class="style-scope ti-widget-registergrid"
+                    >
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        15
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        14
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        13
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        12
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        11
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        10
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        9
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        8
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        7
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        6
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        5
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        4
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        3
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        2
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        1
+                      </th>
+
+                      <th
+                        class="th2 style-scope ti-widget-registergrid"
+                        align="center"
+                        style="min-width: 25px"
+                      >
+                        0
+                      </th>
+                      <template
+                        id="colHdrTemplate"
+                        is="dom-repeat"
+                        as="bit"
+                        index-as="reverseBitIndex"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                    </tr>
+                    <template
+                      id$="ifBitDisplayVisible.Hdr.Bits"
+                      restamp=""
+                      is="dom-if"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                  </thead>
+                  <tbody class="style-scope ti-widget-registergrid">
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifRegBlockHdrVisible.DACx3401 CONFIG AND STATUS REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowReg.STATUS_REGISTER"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowReg.GENERAL_CONFIG"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowReg.MED_ALARM_CONFIG"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowReg.TRIGGER"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      restamp=""
+                      is="dom-repeat"
+                      as="reg"
+                      index-as="regIndex"
+                      id="regGroupTemplate.DACx3401 CONFIG AND STATUS REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifRegBlockExpanded.DACx3401 CONFIG AND STATUS REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowRegBlock.DACx3401 CONFIG AND STATUS REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifRegBlockHdrVisible.DACx3401 OUTPUT REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <tr
+                      align="center"
+                      style="
+                        padding-left: 10px;
+                        height: 28px;
+                        background-color: transparent; ;
+                      "
+                      class="style-scope ti-widget-registergrid"
+                    >
+                      <td
+                        align="left"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        <section
+                          class="regName style-scope ti-widget-registergrid"
+                          style="
+                            padding-left: 30px;
+                            text-align: left;
+                            min-width: 200px;
+                          "
+                          id="reg_1.0"
+                        >
+                          DAC_DATA_REG
+                        </section>
+                      </td>
+                      <td
+                        style="width: 10px"
+                        id="helptd_1.0"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        <template
+                          is="dom-if"
+                          class="style-scope ti-widget-registergrid"
+                        ></template>
+                      </td>
+                      <td class="regcol style-scope ti-widget-registergrid">
+                        <section
+                          style="text-align: center; min-width: 70px"
+                          id="adrs_1.0"
+                          class="style-scope ti-widget-registergrid"
+                        >
+                          0x21
+                        </section>
+                      </td>
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        id="value_1.0"
+                      >
+                        <section
+                          style="text-align: center; width: 100px"
+                          class="style-scope ti-widget-registergrid"
+                        >
+                          <input
+                            is="iron-input"
+                            style="
+                              border: none;
+                              text-align: center;
+                              width: 96px;
+                              background-color: transparent;
+                              color: black;
+                            "
+                            class="style-scope ti-widget-registergrid"
+                            id="valueinput_1.0"
+                          />
+                        </section>
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.15"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.15"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.14"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.14"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.13"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.13"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.12"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.12"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.11"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.11"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.10"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.10"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.9"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.9"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.8"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.8"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.7"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.7"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.6"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.6"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.5"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.5"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.4"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.4"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.3"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.3"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.2"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.2"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.1"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.1"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.0.0"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.0.0"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+                      <template
+                        id="colValueTemplate"
+                        is="dom-repeat"
+                        as="bit"
+                        index-as="reverseBitIndex"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                      <template
+                        restamp=""
+                        is="dom-if"
+                        id="ifBitDisplayVisible.1.0"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                    </tr>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowReg.DAC_DATA_REG"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <tr
+                      align="center"
+                      style="
+                        padding-left: 10px;
+                        height: 28px;
+                        background-color: transparent; ;
+                      "
+                      class="style-scope ti-widget-registergrid"
+                    >
+                      <td
+                        align="left"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        <section
+                          class="regName style-scope ti-widget-registergrid"
+                          style="
+                            padding-left: 30px;
+                            text-align: left;
+                            min-width: 200px;
+                          "
+                          id="reg_1.1"
+                        >
+                          DAC_MARGIN_HIGH
+                        </section>
+                      </td>
+                      <td
+                        style="width: 10px"
+                        id="helptd_1.1"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        <template
+                          is="dom-if"
+                          class="style-scope ti-widget-registergrid"
+                        ></template>
+                      </td>
+                      <td class="regcol style-scope ti-widget-registergrid">
+                        <section
+                          style="text-align: center; min-width: 70px"
+                          id="adrs_1.1"
+                          class="style-scope ti-widget-registergrid"
+                        >
+                          0x25
+                        </section>
+                      </td>
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        id="value_1.1"
+                      >
+                        <section
+                          style="text-align: center; width: 100px"
+                          class="style-scope ti-widget-registergrid"
+                        >
+                          <input
+                            is="iron-input"
+                            style="
+                              border: none;
+                              text-align: center;
+                              width: 96px;
+                              background-color: transparent;
+                              color: black;
+                            "
+                            class="style-scope ti-widget-registergrid"
+                            id="valueinput_1.1"
+                          />
+                        </section>
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.15"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.15"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.14"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.14"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.13"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.13"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.12"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.12"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.11"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.11"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.10"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.10"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.9"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.9"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.8"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.8"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.7"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.7"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.6"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.6"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.5"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.5"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.4"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.4"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.3"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.3"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.2"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.2"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.1"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.1"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: transparent;
+                          color: black; ;
+                        "
+                        id="bit_1.1.0"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: transparent;
+                            color: black; ;
+                          "
+                          id="bitspan_1.1.0"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+                      <template
+                        id="colValueTemplate"
+                        is="dom-repeat"
+                        as="bit"
+                        index-as="reverseBitIndex"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                      <template
+                        restamp=""
+                        is="dom-if"
+                        id="ifBitDisplayVisible.1.1"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                    </tr>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowReg.DAC_MARGIN_HIGH"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+
+                    <tr
+                      align="center"
+                      style="
+                        padding-left: 10px;
+                        height: 28px;
+                        background-color: #edf7f8; ;
+                      "
+                      class="selectedBorder style-scope ti-widget-registergrid"
+                    >
+                      <td
+                        align="left"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        <section
+                          class="regName style-scope ti-widget-registergrid"
+                          style="
+                            padding-left: 30px;
+                            text-align: left;
+                            min-width: 200px;
+                          "
+                          id="reg_1.2"
+                        >
+                          DAC_MARGIN_LOW
+                        </section>
+                      </td>
+                      <td
+                        style="width: 10px"
+                        id="helptd_1.2"
+                        class="style-scope ti-widget-registergrid"
+                      >
+                        <iron-icon
+                          icon="help"
+                          class="gridColor style-scope ti-widget-registergrid x-scope iron-icon-1"
+                          style="float: right; width: 15px"
+                          id="help_1.2"
+                          ><svg
+                            viewBox="0 0 24 24"
+                            preserveAspectRatio="xMidYMid meet"
+                            class="style-scope iron-icon"
+                            style="
+                              pointer-events: none;
+                              display: block;
+                              width: 100%;
+                              height: 100%;
+                            "
+                          >
+                            <g class="style-scope iron-icon">
+                              <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"
+                                class="style-scope iron-icon"
+                              ></path>
+                            </g>
+                          </svg>
+                        </iron-icon>
+                        <template
+                          is="dom-if"
+                          class="style-scope ti-widget-registergrid"
+                        ></template>
+                      </td>
+                      <td class="regcol style-scope ti-widget-registergrid">
+                        <section
+                          style="text-align: center; min-width: 70px"
+                          id="adrs_1.2"
+                          class="style-scope ti-widget-registergrid"
+                        >
+                          0x26
+                        </section>
+                      </td>
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        id="value_1.2"
+                      >
+                        <section
+                          style="text-align: center; width: 100px"
+                          class="style-scope ti-widget-registergrid"
+                        >
+                          <input
+                            is="iron-input"
+                            style="
+                              border: none;
+                              text-align: center;
+                              width: 96px;
+                              background-color: #edf7f8;
+                              color: black;
+                            "
+                            class="style-scope ti-widget-registergrid"
+                            id="valueinput_1.2"
+                          />
+                        </section>
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #edf7f8;
+                          color: black; ;
+                        "
+                        id="bit_1.2.15"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #edf7f8;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.15"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #edf7f8;
+                          color: black; ;
+                        "
+                        id="bit_1.2.14"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #edf7f8;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.14"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #edf7f8;
+                          color: black; ;
+                        "
+                        id="bit_1.2.13"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #edf7f8;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.13"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #edf7f8;
+                          color: black; ;
+                        "
+                        id="bit_1.2.12"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #edf7f8;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.12"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.11"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.11"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.10"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.10"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.9"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.9"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.8"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.8"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.7"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.7"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.6"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.6"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.5"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.5"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.4"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.4"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.3"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.3"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #ffffe5;
+                          color: black; ;
+                        "
+                        id="bit_1.2.2"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #ffffe5;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.2"
+                          class="style-scope ti-widget-registergrid"
+                          >1</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #edf7f8;
+                          color: black; ;
+                        "
+                        id="bit_1.2.1"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #edf7f8;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.1"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+
+                      <td
+                        class="regcol style-scope ti-widget-registergrid"
+                        style="
+                          min-width: 25px;
+                          background-color: #edf7f8;
+                          color: black; ;
+                        "
+                        id="bit_1.2.0"
+                      >
+                        <span
+                          style="
+                            border: none;
+                            text-align: center;
+                            min-width: 21px;
+                            background-color: #edf7f8;
+                            color: black; ;
+                          "
+                          id="bitspan_1.2.0"
+                          class="style-scope ti-widget-registergrid"
+                          >0</span
+                        >
+                      </td>
+                      <template
+                        id="colValueTemplate"
+                        is="dom-repeat"
+                        as="bit"
+                        index-as="reverseBitIndex"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                      <template
+                        restamp=""
+                        is="dom-if"
+                        id="ifBitDisplayVisible.1.2"
+                        class="style-scope ti-widget-registergrid"
+                      ></template>
+                    </tr>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowReg.DAC_MARGIN_LOW"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      restamp=""
+                      is="dom-repeat"
+                      as="reg"
+                      index-as="regIndex"
+                      id="regGroupTemplate.DACx3401 OUTPUT REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifRegBlockExpanded.DACx3401 OUTPUT REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      id="ifShowRegBlock.DACx3401 OUTPUT REGISTERS"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      id="deviceTemplate"
+                      is="dom-repeat"
+                      as="regGroup"
+                      index-as="regBlockIndex"
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      id="gridTemplate"
+                      is="dom-if"
+                      restamp=""
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                    <template
+                      is="dom-if"
+                      restamp=""
+                      class="style-scope ti-widget-registergrid"
+                    ></template>
+                  </tbody>
+                </table>
+                <div
+                  id="helpTable"
+                  style="font-weight: bold; padding-right: 10px"
+                  class="style-scope ti-widget-registergrid"
+                >
+                  <template
+                    is="dom-if"
+                    restamp=""
+                    class="style-scope ti-widget-registergrid"
+                  ></template>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </ti-widget-registergrid>
+      <div
+        id="virtualGridScrollDiv"
+        style="
+          position: relative;
+          display: block;
+          width: 18px;
+          margin-left: -2px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          height: calc(100% - 28px);
+        "
+        class="style-scope ti-widget-registerview"
+      >
+        <div
+          id="virtualGridScrollbar"
+          style="
+            position: absolute;
+            display: block;
+            width: 1px;
+            height: 364.6px;
+          "
+          class="style-scope ti-widget-registerview"
+        ></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,713 @@
+{
+  "data": {
+    "info": {
+      "tags": "DAC",
+      "name": "DACx3401",
+      "desc": "The 10-bit DAC53401 and 8-bit DAC43401 (DACx3401) are a pin-compatible family of buffered voltage-output digital-to-analog converters (DACs). These devices have nonvolatile memory (NVM), an internal reference, and a PMBuscompatible I2C interface. The DACx3401 operates with either an internal reference or the power supply as a reference, and provides full-scale output of 1.8 V to 5.5 V. The devices communicate through the I2C interface. These devices support I2C standard mode (100 kbps), fast mode (400 kbps), and fast+ mode (1 Mbps). The DACx3401-Q1 are feature rich, and include features such as PMBus voltage margin commands (for example, Turn On/Off, Margin High/Low, and more), digital slew rate control, user-programmable power up to high impedance, standalone waveform generator (square, ramp, and sawtooth), medical alarm tone generator (low, medium, and high priority), and dedicated feedback pin.",
+      "regsize": "16",
+      "urls": "http://www.ti.com/product/DAC53401"
+    },
+    "regblocks": [
+      {
+        "name": "DACx3401 CONFIG AND STATUS REGISTERS",
+        "desc": "",
+        "deviceAddrs": "",
+        "id": "dacx3401_config_and_status_registers",
+        "registers": [
+          {
+            "addr": "0xD0",
+            "name": "STATUS_REGISTER",
+            "desc": "Status Register",
+            "default": "0x0000",
+            "value": "0x0000",
+            "mode": "R",
+            "size": "16",
+            "id": "status_register",
+            "fields": [
+              {
+                "name": "NVM_CRC_ALARM_USER",
+                "desc": "0 : No CRC error in user NVM bits\r\n1: CRC error in user NVM bits",
+                "stop": "15",
+                "start": "15",
+                "id": "nvm_crc_alarm_user",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "value"
+                }
+              },
+              {
+                "name": "NVM_CRC_ALARM_INTERNAL",
+                "desc": "0 : No CRC error in internal NVM\r\n1: CRC error in internal NVM bits",
+                "stop": "14",
+                "start": "14",
+                "id": "nvm_crc_alarm_internal",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "value"
+                }
+              },
+              {
+                "name": "NVM_BUSY",
+                "desc": "0 : NVM write or load completed, Write to DAC registers allowed0 : NVM write or load in progress, Write to DAC registers not allowed",
+                "stop": "13",
+                "start": "13",
+                "id": "nvm_busy",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "DAC_UPDATE_BUSY",
+                "desc": "0 : DAC outputs updated, Write to DAC registers allowed\r\n1 : DAC outputs update in progress, Write to DAC registers not allowed",
+                "stop": "12",
+                "start": "12",
+                "id": "dac_update_busy",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "DEVICE_ID_VERSION_ID",
+                "desc": "DAC53401-Q1: 0Ch\r\nDAC43401-Q1: 14h",
+                "stop": "5",
+                "start": "0",
+                "id": "device_id_version_id",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "value"
+                }
+              }
+            ]
+          },
+          {
+            "addr": "0xD1",
+            "name": "GENERAL_CONFIG",
+            "desc": "General Configuration Register",
+            "default": "0x0000",
+            "value": "0x0000",
+            "mode": "R/W",
+            "size": "16",
+            "id": "general_config",
+            "fields": [
+              {
+                "name": "FUNC_CONFIG",
+                "desc": "00 : Generates a triangle wave between MARGIN_HIGH (address 14h) code to MARGIN_LOW (address 18h) code with slope defined by SLEW_RATE (address D1h) bits\r\n01: Generates Saw-Tooth wave between MARGIN_HIGH (address 14h) code to MARGIN_LOW (address 18h) code, with rising slope defined by SLEW_RATE (address D1h) bits and immediate falling edge\r\n10: Generates Saw-Tooth wave between MARGIN_HIGH (address 14h) code to MARGIN_LOW (address 18h) code, with falling slope defined by SLEW_RATE (address D1h) bits and immediate rising edge\r\n11: Generates a square wave between MARGIN_HIGH (address 14h) code to MARGIN_LOW (address 18h) code with pulse high",
+                "stop": "15",
+                "start": "14",
+                "id": "func_config",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "Trangular",
+                      "value": "0b00"
+                    },
+                    {
+                      "display": "Sawtooth",
+                      "value": "0b01"
+                    },
+                    {
+                      "display": "Reverse sawtooth",
+                      "value": "0b10"
+                    },
+                    {
+                      "display": "Square",
+                      "value": "0b11"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DEVICE_LOCK",
+                "desc": "0 : Device not locked\r\n1: Device locked, the device locks all the registers. This bit can be reset (unlock device) by writing 0101 to the DEVICE_UNLOCK_CODE bits (address D3h)",
+                "stop": "13",
+                "start": "13",
+                "id": "device_lock",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "EN_PMBUS",
+                "desc": "0 : PMBus commands (01h, 78h, and 98h) disabled\r\n1: PMBus commands (01h, 78h, and 98h) enabled",
+                "stop": "12",
+                "start": "12",
+                "id": "en_pmbus",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "CODE_STEP",
+                "desc": "Code step for programmable slew rate control.\r\n000: Code step size = 1 LSB\r\n001: Code step size = 2 LSB\r\n010: Code step size = 3 LSB\r\n011: Code step size = 4 LSB\r\n100: Code step size = 6 LSB\r\n101: Code step size = 8 LSB\r\n110: Code step size = 16 LSB\r\n111: Code step size = 32 LSB",
+                "stop": "11",
+                "start": "9",
+                "id": "code_step",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "1 LSB",
+                      "value": "0b000"
+                    },
+                    {
+                      "display": "2  LSB",
+                      "value": "0b001"
+                    },
+                    {
+                      "display": "3 LSB",
+                      "value": "0b010"
+                    },
+                    {
+                      "display": "4 LSB",
+                      "value": "0b011"
+                    },
+                    {
+                      "display": "6 LSB",
+                      "value": "0b100"
+                    },
+                    {
+                      "display": "8 LSB",
+                      "value": "0b101"
+                    },
+                    {
+                      "display": "16 LSB",
+                      "value": "0b110"
+                    },
+                    {
+                      "display": "32 LSB",
+                      "value": "0b111"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "SLEW_RATE",
+                "desc": "Slew rate for programmable slew rate control.\r\n0000: 25.6 μs (per step)\r\n0001: 25.6 μs × 1.25 (per step)\r\n0010: 25.6 μs × 1.50 (per step)\r\n0011: 25.6 μs × 1.75 (per step)\r\n0100: 204.8 μs (per step)\r\n0101: 204.8 μs × 1.25 (per step)\r\n0110: 204.8 μs × 1.50 (per step)\r\n0111: 204.8 μs × 1.75 (per step)\r\n1000: 1.6384 ms (per step)\r\n1001: 1.6384 ms × 1.25 (per step)\r\n1010: 1.6384 ms × 1.50 (per step)\r\n1011: 1.6384 ms × 1.75 (per step)\r\n1100: 12 μs (per step)\r\n1101: 8 μs (per step)\r\n1110: 4 μs (per step)\r\n1111: No slew (default)",
+                "stop": "8",
+                "start": "5",
+                "id": "slew_rate",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "25.6 μs (per step)",
+                      "value": "0b0000"
+                    },
+                    {
+                      "display": "25.6 μs × 1.25 (per step)",
+                      "value": "0b0001"
+                    },
+                    {
+                      "display": "25.6 μs × 1.50 (per step)",
+                      "value": "0b0010"
+                    },
+                    {
+                      "display": "25.6 μs × 1.75 (per step)",
+                      "value": "0b0011"
+                    },
+                    {
+                      "display": "204.8 μs (per step)",
+                      "value": "0b0100"
+                    },
+                    {
+                      "display": "204.8 μs × 1.25 (per step)",
+                      "value": "0b0101"
+                    },
+                    {
+                      "display": "204.8 μs × 1.50 (per step)",
+                      "value": "0b0110"
+                    },
+                    {
+                      "display": "204.8 μs × 1.75 (per step)",
+                      "value": "0b0111"
+                    },
+                    {
+                      "display": "1.6384 ms (per step)",
+                      "value": "0b1000"
+                    },
+                    {
+                      "display": "1.6384 ms × 1.25 (per step)",
+                      "value": "0b1001"
+                    },
+                    {
+                      "display": "1.6384 ms × 1.50 (per step)",
+                      "value": "0b1010"
+                    },
+                    {
+                      "display": "1.6384 ms × 1.75 (per step)",
+                      "value": "0b1011"
+                    },
+                    {
+                      "display": "12 μs (per step)",
+                      "value": "0b1100"
+                    },
+                    {
+                      "display": "8 μs (per step)",
+                      "value": "0b1101"
+                    },
+                    {
+                      "display": "4 μs (per step)",
+                      "value": "0b1110"
+                    },
+                    {
+                      "display": "No slew (default)",
+                      "value": "0b1111"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DAC_PDN",
+                "desc": "00: Power up\r\n01: Power up\r\n10: Power down to high impedance\r\n11: Power down to 10K",
+                "stop": "4",
+                "start": "3",
+                "id": "dac_pdn",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "Power-up",
+                      "value": "0b00"
+                    },
+                    {
+                      "display": "High-Z power-dwon",
+                      "value": "0b10"
+                    },
+                    {
+                      "display": "10k power-down",
+                      "value": "0b11"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "REF_EN",
+                "desc": "0: Internal reference disabled, VDD is DAC reference voltage, DAC output range from 0 to VDD.\r\n1: Internal reference enabled, DAC reference = 1.21 V",
+                "stop": "2",
+                "start": "2",
+                "id": "ref_en",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "DAC_SPAN",
+                "desc": "Only applicable when internal reference is enabled.\r\n00: Reference to VOUT gain 1.5X\r\n01: Reference to VOUT gain 2X\r\n10: Reference to VOUT gain 3X\r\n11: Reference to VOUT gain 4X",
+                "stop": "1",
+                "start": "0",
+                "id": "dac_span",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "1.5x",
+                      "value": "0b00"
+                    },
+                    {
+                      "display": "2x",
+                      "value": "0b01"
+                    },
+                    {
+                      "display": "3x",
+                      "value": "0b10"
+                    },
+                    {
+                      "display": "4x",
+                      "value": "0b11"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "addr": "0xD2",
+            "name": "MED_ALARM_CONFIG",
+            "desc": "Medical Alarm Configuration Register",
+            "default": "0x0000",
+            "value": "0x0000",
+            "mode": "R",
+            "size": "16",
+            "id": "med_alarm_config",
+            "fields": [
+              {
+                "name": "MED_ALARM_HP",
+                "desc": "0: No medical alarm waveform generated\r\n1: High priority medical alarm waveform generated",
+                "stop": "10",
+                "start": "10",
+                "id": "med_alarm_hp",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "MED_ALARM_MP",
+                "desc": "0: No medical alarm waveform generated\r\n1: Medium priority medical alarm waveform generated",
+                "stop": "9",
+                "start": "9",
+                "id": "med_alarm_mp",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "MED_ALARM_LP",
+                "desc": "0: No medical alarm waveform generated\r\n1: Low priority medical alarm waveform generated",
+                "stop": "8",
+                "start": "8",
+                "id": "med_alarm_lp",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "RESERVED",
+                "desc": "Reserved",
+                "stop": "7",
+                "start": "6",
+                "id": "reserved",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "1",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "value"
+                }
+              },
+              {
+                "name": "INTERBURST_TIME",
+                "desc": "00: TBD\r\n01: TBD\r\n10: TBD\r\n11: TBD",
+                "stop": "5",
+                "start": "4",
+                "id": "interburst_time",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "value1",
+                      "value": "0b00"
+                    },
+                    {
+                      "display": "value2",
+                      "value": "0b01"
+                    },
+                    {
+                      "display": "value3",
+                      "value": "0b10"
+                    },
+                    {
+                      "display": "value4",
+                      "value": "0b11"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "PULSE_OFF_TIME",
+                "desc": "00: TBD\r\n01: TBD\r\n10: TBD\r\n11: TBD",
+                "stop": "3",
+                "start": "2",
+                "id": "pulse_off_time",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "value1",
+                      "value": "0b00"
+                    },
+                    {
+                      "display": "value2",
+                      "value": "0b01"
+                    },
+                    {
+                      "display": "value3",
+                      "value": "0b10"
+                    },
+                    {
+                      "display": "value4",
+                      "value": "0b11"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "PULSE_ON_TIME",
+                "desc": "00: TBD\r\n01: TBD\r\n10: TBD\r\n11: TBD",
+                "stop": "1",
+                "start": "0",
+                "id": "pulse_on_time",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "value1",
+                      "value": "0b00"
+                    },
+                    {
+                      "display": "value2",
+                      "value": "0b01"
+                    },
+                    {
+                      "display": "value3",
+                      "value": "0b10"
+                    },
+                    {
+                      "display": "value4",
+                      "value": "0b11"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "addr": "0xD3",
+            "name": "TRIGGER",
+            "desc": "Trigger Register",
+            "default": "0x0000",
+            "value": "0x0000",
+            "mode": "W",
+            "size": "16",
+            "id": "trigger",
+            "fields": [
+              {
+                "name": "DEVICE_UNLOCK_CODE",
+                "desc": "Write 0101 to unlock the device to bypass DEVICE_LOCK bit.",
+                "stop": "15",
+                "start": "12",
+                "id": "device_unlock_code",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "Default",
+                      "value": "0b0000"
+                    },
+                    {
+                      "display": "Reset",
+                      "value": "0b0101"
+                    }
+                  ]
+                }
+              },
+              {
+                "name": "DEVICE_CONFIG_RESET",
+                "desc": "0: Device configuration reset not initiated\r\n1: Device configuration reset initiated. All registers loaded with default settings. All user NVM bits set to default setting (factory reset).",
+                "stop": "9",
+                "start": "9",
+                "id": "device_config_reset",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "START_FUNC_GEN",
+                "desc": "0: Continuous waveform generation mode disabled\r\n1: Continuous waveform generation mode enabled, device generates continuous waveform based on FUNC_CONFIG (D1h), MARGIN_LOW (address 18h), and SLEW_RATE (address D1h) bits.",
+                "stop": "8",
+                "start": "8",
+                "id": "start_func_gen",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "PMBUS_MARGIN_HIGH",
+                "desc": "0: PMBus margin high command not initiated\r\n1: PMBus margin high command initiated, DAC output margins high to MARGIN_HIGH code (address 25h).",
+                "stop": "7",
+                "start": "7",
+                "id": "pmbus_margin_high",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "PMBUS_MARGIN_LOW",
+                "desc": "0: PMBus margin low command not initiated\r\n1: PMBus margin low command initiated, DAC output margins low to MARGIN_LOW code (address 26h).",
+                "stop": "6",
+                "start": "6",
+                "id": "pmbus_margin_low",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "NVM_RELOAD",
+                "desc": "0: NVM reload not initiated\r\n1: NVM reload initiated, applicable DAC registers loaded with corresponding NVM. NVM_BUSY bit set to 1 which this operation is in progress.",
+                "stop": "5",
+                "start": "5",
+                "id": "nvm_reload",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "NVM_PROG",
+                "desc": "0: NVM write not initiated\r\n1: NVM write initiated, NVM corresponding to applicable DAC registers loaded with existing register settings. NVM_BUSY bit set to 1 which this operation is in progress.",
+                "stop": "4",
+                "start": "4",
+                "id": "nvm_prog",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "indicator"
+                }
+              },
+              {
+                "name": "SW_RESET",
+                "desc": "00000: Software reset not initiated\r\n1010: Software reset initiated, DAC registers loaded with corresponding NVMs, all other registers loaded with default settings.",
+                "stop": "3",
+                "start": "0",
+                "id": "sw_reset",
+                "attrs": {
+                  "isHidden": "0",
+                  "isReserved": "0",
+                  "isLocked": "0"
+                },
+                "widget": {
+                  "type": "select",
+                  "options": [
+                    {
+                      "display": "Default",
+                      "value": "0b0000"
+                    },
+                    {
+                      "display": "Reset",
+                      "value": "0b1010"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
